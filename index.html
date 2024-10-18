@@ -4,64 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Ranking System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    <h1>Student Ranking System</h1>
+    <div class="container">
+        <h1>Enter Student Data for Ranking</h1>
+        <form action="{{ url_for('rank') }}" method="POST">
+            <label for="GPA">GPA:</label>
+            <input type="text" name="GPA" id="GPA" required><br>
 
-    <!-- Form to input student data -->
-    <form id="studentForm">
-        <label for="GPA">GPA:</label>
-        <input type="text" id="GPA" name="GPA"><br>
+            <label for="hackathon_participation">Hackathon Participation:</label>
+            <input type="text" name="hackathon_participation" id="hackathon_participation" required><br>
 
-        <label for="hackathon">Hackathon Participation:</label>
-        <input type="text" id="hackathon" name="hackathon"><br>
+            <label for="research_papers">Research Papers:</label>
+            <input type="text" name="research_papers" id="research_papers" required><br>
 
-        <label for="papers">Research Papers:</label>
-        <input type="text" id="papers" name="papers"><br>
+            <label for="contributions">Contributions (Teacher assistance, etc.):</label>
+            <input type="text" name="contributions" id="contributions" required><br>
 
-        <label for="assistance">Teacher Assistance:</label>
-        <input type="text" id="assistance" name="assistance"><br>
-
-        <label for="events">Event Organizing:</label>
-        <input type="text" id="events" name="events"><br>
-
-        <label for="activities">Extracurricular Activities:</label>
-        <input type="text" id="activities" name="activities"><br>
-
-        <label for="consistency">Consistency Score:</label>
-        <input type="text" id="consistency" name="consistency"><br>
-
-        <button type="button" onclick="submitData()">Submit</button>
-    </form>
-
-    <!-- Area to display the ranked results -->
-    <div id="results"></div>
-
-    <script>
-        function submitData() {
-            const formData = {
-                GPA: document.getElementById('GPA').value,
-                hackathon_participation: document.getElementById('hackathon').value,
-                research_papers: document.getElementById('papers').value,
-                teacher_assistance: document.getElementById('assistance').value,
-                event_organizing: document.getElementById('events').value,
-                extracurricular_activities: document.getElementById('activities').value,
-                consistency_score: document.getElementById('consistency').value,
-            };
-
-            fetch('/rank_students', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify([formData]),
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('results').innerHTML = JSON.stringify(data, null, 2);
-            })
-            .catch(error => console.error('Error:', error));
-        }
-    </script>
+            <button type="submit" class="button">Start Ranking</button>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </body>
 </html>
