@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Ranking System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Enter Student Data for Ranking</h1>
+        <form action="{{ url_for('rank') }}" method="POST">
+            <label for="GPA">GPA:</label>
+            <input type="text" name="GPA" id="GPA" required><br>
+
+            <label for="hackathon_participation">Hackathon Participation:</label>
+            <input type="text" name="hackathon_participation" id="hackathon_participation" required><br>
+
+            <label for="research_papers">Research Papers:</label>
+            <input type="text" name="research_papers" id="research_papers" required><br>
+
+            <label for="contributions">Contributions (Teacher assistance, etc.):</label>
+            <input type="text" name="contributions" id="contributions" required><br>
+
+            <button type="submit" class="button">Start Ranking</button>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>
